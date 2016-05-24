@@ -12,8 +12,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 import mySQLConnection.DBOperation;
-import org.json.JSONObject;
-import org.json.JSONTokener;
+import org.json.*;
 
 /**
  * Created by Administrator on 2016/5/24.
@@ -37,8 +36,7 @@ public class loginMethod extends HttpServlet {
                 sb.append(temp);
             }
             br.close();
-            JSONTokener jsonParser = new JSONTokener(sb.toString());
-            JSONObject inputJSON = (JSONObject) jsonParser.nextValue();
+            JSONObject inputJSON = new JSONObject(sb.toString());
             if(inputJSON.getString("userId").isEmpty() || inputJSON.getString("password").isEmpty())
                 throw new Exception("receive empty value");
             else

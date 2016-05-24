@@ -1,11 +1,14 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="login:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/login_war_exploded</output-path>
+  <artifact type="exploded-war" name="pancai">
+    <output-path>$PROJECT_DIR$/out/artifacts/pancai</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="pancaiServlets/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="pancaiServlets" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="jsonLib" />
         </element>
       </element>
     </root>
