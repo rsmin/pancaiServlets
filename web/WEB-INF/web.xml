@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <servlet>
+        <!--servlet实现名称 ，可以任意取，但最好与你的Servlet实现类名称一致-->
+        <servlet-name>loginMethod</servlet-name>
+        <!--用来指定servlet的实现类-->
+        <servlet-class>com.pancai.loginMethod</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <!-- 名称需与servlet里的name一致 -->
+        <servlet-name>loginMethod</servlet-name>
+        <!-- 页面中调用servlet类时，名称可以任意取，但是需要/ -->
+        <url-pattern>/loginMethod</url-pattern>
+    </servlet-mapping>
+</web-app>
