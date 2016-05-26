@@ -17,6 +17,11 @@ public class DBOperation {
         String sql = "select * from user_login where id = ? and password = ?";
         Connection conn= getConnection();
         try{
+            if(userId.isEmpty() || password.isEmpty()){
+                errorMessage="userid or password is empty";
+                throw new Exception();
+            }
+
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1,userId);
             ps.setString(2,password);
@@ -27,11 +32,12 @@ public class DBOperation {
                 privilige=rs.getString("privilege");
             }
             else{
-                errorMessage="用户不存在";
+                errorMessage="user doesn't exist";
             }
             rs.close();
             ps.close();
         }catch(Exception e){
+            errorMessage=errorMessage+e.getMessage();
             coonectionError=e.getMessage();
             e.printStackTrace();
         }
@@ -40,9 +46,9 @@ public class DBOperation {
         //return result;
         JSONObject returnResult = new JSONObject();
         try {
+            returnResult.put("errorMessage",errorMessage);
             returnResult.put("isSuccess", isSuccess);
             returnResult.put("privilige",privilige);
-            returnResult.put("errorMessage",errorMessage);
         }catch (Exception e){
             coonectionError=coonectionError+e.getMessage();
             e.printStackTrace();
@@ -51,22 +57,11 @@ public class DBOperation {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
     public static Connection getConnection(){
         Connection conn=null;
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            String DBUrl="jdbc:mysql://localhost:3306/host_server";
+            String DBUrl="jdbc:mysql://www.timespacecolor.com.cn:3306/host_server";
             conn= DriverManager.getConnection(DBUrl,"admin","admin");
         }catch(Exception e){
             e.printStackTrace();
